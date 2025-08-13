@@ -57,8 +57,8 @@ docker-compose logs -f app
 
 The application will be available at:
 
-- **API**: http://localhost:3000
-- **Swagger Documentation**: http://localhost:3000/api
+- **API**: http://localhost:3030
+- **Swagger Documentation**: http://localhost:3030/api
 - **PostgreSQL**: localhost:5432
 
 ### 3. Local Development (without Docker)
@@ -197,7 +197,7 @@ src/
 | Variable      | Description       | Default       |
 | ------------- | ----------------- | ------------- |
 | `NODE_ENV`    | Environment mode  | `development` |
-| `PORT`        | Application port  | `3000`        |
+| `PORT`        | Application port  | `3030`        |
 | `DB_HOST`     | Database host     | `localhost`   |
 | `DB_PORT`     | Database port     | `5432`        |
 | `DB_USERNAME` | Database username | `postgres`    |
