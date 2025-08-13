@@ -9,7 +9,12 @@ import {
   Query,
   UseGuards,
   Req,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
+import { GlobalExceptionFilter } from '@/common/filters/global-exception.filter';
+import {} from '@nestjs/common';
+
 import { AuthGuard } from '@nestjs/passport';
 import { NotesService } from './notes.service';
 import { CreateNoteDto } from './dto/create-note.dto';
@@ -27,8 +32,12 @@ export class NotesController {
 
   @Get()
   findAll(@Req() req: any, @Query('includeArchived') includeArchived?: string) {
-    const include = includeArchived === 'true';
-    return this.notesService.findAll(req.user.userId, include);
+    try {
+      const include = includeArchived === 'true';
+      return this.notesService.findAll(req.user.userId, include);
+    } catch (error) {
+      throw new HttpException('not found', HttpStatus.NOT_FOUND);
+    }
   }
 
   @Get('by-tag/:tag')

@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { GlobalExceptionFilter } from '@/common/filters/global-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -35,6 +36,7 @@ async function bootstrap() {
 
   const port = process.env.PORT || 3030;
   //   await app.listen(process.env.PORT || 3030, '0.0.0.0');
+  app.useGlobalFilters(new GlobalExceptionFilter());
   app.listen(3030, '0.0.0.0');
 
   console.log(`Application is running on: http://localhost:${port}`);
