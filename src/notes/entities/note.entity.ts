@@ -4,8 +4,10 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
+import { User } from '../../users/entities/user.entity.ts';
 
 @Entity('notes')
 export class Note {
@@ -46,6 +48,12 @@ export class Note {
   })
   @Column({ default: false })
   isArchived: boolean;
+
+  @ManyToOne(() => User, (user) => user.notes, {
+    onDelete: 'CASCADE',
+    eager: false,
+  })
+  user: User;
 
   @ApiProperty({
     description: 'When the note was created',

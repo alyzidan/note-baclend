@@ -1,13 +1,10 @@
 import { PartialType } from '@nestjs/swagger';
-import { IsOptional, IsBoolean } from 'class-validator';
-import { ApiPropertyOptional } from '@nestjs/swagger';
 import { CreateNoteDto } from './create-note.dto';
+import { IsBoolean, IsOptional } from 'class-validator';
+import { ApiPropertyOptional } from '@nestjs/swagger';
 
 export class UpdateNoteDto extends PartialType(CreateNoteDto) {
-  @ApiPropertyOptional({
-    description: 'Whether the note should be archived',
-    example: false,
-  })
+  @ApiPropertyOptional({ example: false })
   @IsOptional()
   @IsBoolean()
   isArchived?: boolean;
