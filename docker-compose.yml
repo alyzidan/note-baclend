@@ -22,7 +22,6 @@ services:
         condition: service_healthy
     volumes:
       - .:/app
-      # - /app/node_modules
     command: pnpm run start:dev
 
   postgres:
@@ -43,6 +42,15 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+  adminer:
+    image: adminer
+    container_name: notes-adminer
+    restart: always
+    ports:
+      - '8080:8080'
+    depends_on:
+      - postgres
 
 volumes:
   postgres_data:
