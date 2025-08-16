@@ -1,15 +1,16 @@
 import { DataSource } from 'typeorm';
 import { Note } from '../notes/entities/note.entity';
-import { User } from '../users/entities/user.entity.ts';
+import { User } from '../users/entities/user.entity';
+import { Tenant } from '../tenants/entities/tenants.entity';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
   host: process.env.DB_HOST || 'localhost',
-  port: parseInt(process.env.DB_PORT || '5432') || 5432,
+  port: parseInt(process.env.DB_PORT) || 5432,
   username: process.env.DB_USERNAME || 'postgres',
   password: process.env.DB_PASSWORD || 'postgres',
   database: process.env.DB_DATABASE || 'notesapp',
-  entities: [Note, User],
+  entities: [Tenant, User, Note],
   migrations: ['src/database/migrations/*.ts'],
   migrationsTableName: 'migrations',
   synchronize: false,

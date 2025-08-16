@@ -9,6 +9,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { APP_FILTER } from '@nestjs/core';
 import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
+import { TenantsModule } from './tenants/tenants.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { GlobalExceptionFilter } from './common/filters/global-exception.filter'
     UsersModule,
     NotesModule,
     AuthModule,
+    TenantsModule,
   ],
   providers: [
     UsersService,
