@@ -5,9 +5,11 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-import { User } from '../../users/entities/user.entity.ts';
+import { User } from '../../users/entities/user.entity';
+import { Tenant } from '../../tenants/entities/tenants.entity';
 
 @Entity('notes')
 export class Note {
@@ -49,11 +51,19 @@ export class Note {
   @Column({ default: false })
   isArchived: boolean;
 
-  @ManyToOne(() => User, (user) => user.notes, {
-    onDelete: 'CASCADE',
-    eager: false,
+  @ApiProperty({
+    description: 'The ID of the user who owns this note',
+    example: '123e4567-e89b-12d3-a456-426614174000',
   })
-  user: User;
+  @Column({ name: 'user_id' })
+  userId: string;
+
+  @ApiProperty({
+    description: 'The tenant ID this note belongs to',
+    example: '123e4567-e89b-12d3-a456-426614174000',
+  })
+  @Column({ name: 'tenant_id' })
+  tenantId: string;
 
   @ApiProperty({
     description: 'When the note was created',
@@ -68,4 +78,17 @@ export class Note {
   })
   @UpdateDateColumn()
   updatedAt: Date;
+
+  // Relations
+  @ManyToOne(() => User, (user) => user.notes, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'user_id' })
+  user: User;
+
+  @ManyToOne(() => Tenant, (tenant) => tenant.notes, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'tenant_id' })
+  tenant: Tenant;
 }
