@@ -1,4 +1,4 @@
-import { User } from '@/users/entities/user.entity.ts';
+import { User } from '../../users/entities/user.entity';
 import {
   Injectable,
   CanActivate,
@@ -9,8 +9,8 @@ import {
 @Injectable()
 export class AdminGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean {
-    const request: Request = context.switchToHttp().getRequest();
-    const user: User = request.user;
+    const request = context.switchToHttp().getRequest();
+    const user = request.user;
 
     if (!user) {
       throw new ForbiddenException('User not authenticated');

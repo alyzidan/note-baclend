@@ -22,7 +22,7 @@ import {
 import { TenantsService } from './tenants.service';
 import { CreateTenantDto } from './dto/create-tenant.dto';
 import { UpdateTenantDto } from './dto/update-tenant.dto';
-import { Tenant } from './entities/tenant.entity';
+import { Tenant } from './entities/tenants.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { AdminGuard } from '../common/guards/admin.guard';
 

@@ -24,7 +24,7 @@ import { NotesService } from './notes.service';
 import { CreateNoteDto } from './dto/create-note.dto';
 import { UpdateNoteDto } from './dto/update-note.dto';
 import { Note } from './entities/note.entity';
-import { JwtAuthGuard } from '@/auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { TenantGuard } from '../common/guards/tenant.guard';
 import { AdminGuard } from '../common/guards/admin.guard';
 import { CurrentTenant } from '../common/decorators/current-tenant.decorator';
