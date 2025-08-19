@@ -37,6 +37,13 @@ export class User {
   firstName: string;
 
   @ApiProperty({
+    description: 'The age of the user',
+    example: 20,
+  })
+  @Column()
+  age: number;
+
+  @ApiProperty({
     description: 'The last name of the user',
     example: 'Doe',
   })
@@ -84,6 +91,9 @@ export class User {
   })
   @CreateDateColumn()
   createdAt: Date;
+
+  @CreateDateColumn()
+  deleteddAt: Date;
 
   @ApiProperty({
     description: 'When the user was last updated',
