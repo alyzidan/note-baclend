@@ -10,6 +10,6 @@ export const AppDataSource = new DataSource({
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
   migrations: ['src/database/migrations/*.ts'],
   migrationsTableName: 'migrations',
-  synchronize: false,
+  synchronize: true,
   logging: process.env.NODE_ENV === 'development',
 });
