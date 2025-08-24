@@ -10,7 +10,6 @@ import { APP_FILTER } from '@nestjs/core';
 import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
 import { TenantsModule } from './tenants/tenants.module';
 
-// Todo refactor these into dynamic modiule import
 @Module({
   imports: [
     ConfigModule.forRoot({
