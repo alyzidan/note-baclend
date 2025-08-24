@@ -40,7 +40,19 @@ export class GlobalExceptionFilter implements ExceptionFilter {
       `${request.method} ${request.url} - ${status} - ${message}`,
       exception instanceof Error ? exception.stack : String(exception),
     );
-
+    function stringifyException(exception: unknown): string {
+      if (exception instanceof Error) {
+        return exception.stack;
+      } else if (typeof exception === 'string') {
+        return exception;
+      } else {
+        return JSON.stringify(exception);
+      }
+    }
+    this.logger.error(
+      `${request.method} ${request.url} - ${status} - ${message}`,
+      stringifyException(exception),
+    );
     const errorResponse = {
       statusCode: status,
       error,
